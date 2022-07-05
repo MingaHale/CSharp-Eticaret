@@ -1,0 +1,67 @@
+﻿<div class="container" style="margin-top:25px;">
+    <div class="row">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <td>#</td>
+                    <td>Ürün</td>
+                    <td>Adet</td>
+                    <td>Birim Fiyatı</td>
+                    <td>Toplam Fiyat</td>
+                    <td>İşlemler</td>
+                </tr>                
+            </thead>
+
+            <tbody>
+                @if (Model != null )
+                {
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td style="vertical-align:middle;text-align:center"><img src="~/images/@item.Images" width="75"/></td>
+                            <td style="vertical-align:middle;text-align:center">@item.Name</td>
+
+                            <td style="vertical-align:middle;text-align:center">
+                                <button type="button" style="margin-right:5px;" onclick="JSSepetAdet(@item.Id,0)">-</button>
+                                <span>@item.Piece</span>
+                                <button type="button" style="margin-left:5px;" onclick="JSSepetAdet(@item.Id,1)">+</button>
+                            </td>
+                            <td style="vertical-align:middle;text-align:center">
+                                @if (item.Discount != 0)
+                                {
+                                    
+                                    <span style="text-decoration:line-through;color:red;margin-right:10px;">@item.Price.ToString("C")</span>
+                                    <sapn>@item.Discount.ToString("C")</sapn>
+                                    
+                                }
+                                else
+                                {       
+                                        <span>@item.Price.ToString("C")</span>
+                                        
+                                }
+                            </td>
+                            <td style="vertical-align:middle;text-align:center">
+                                @if (item.Discount != 0)
+                                {
+                                    
+                                    <span >@Html.Raw((item.Discount * item.Piece).ToString("C"))</span> //Matematiksel işlem yapılıyorsa @html.raw içinde olması lazım
+                                    
+                                }
+                                else
+                                {
+                                    <span >@Html.Raw((item.Price * item.Piece).ToString("C"))</span>
+                                }
+                            </td>
+                            <td style="vertical-align:middle;text-align:center"><button type="button" onclick="JSSepetSil(@item.Id)" class="btn btn-danger">Sil</button></td>
+                        </tr>
+                    }
+                    
+                }
+            </tbody>
+        </table>
+        <div class="col-md-12 text-right" style="margin-top:15px;">
+            <a href="/" class="btn btn-primary">Alışverişe Devam Et</a>
+            <a href="/Odeme" class="btn btn-success">Ödemeye Geç</a>
+        </div>
+    </div>
+</div>

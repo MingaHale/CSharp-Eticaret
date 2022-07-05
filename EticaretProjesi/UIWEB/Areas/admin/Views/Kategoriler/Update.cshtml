@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewData["Title"] = "Insert";
+    Layout = "~/Areas/admin/Views/_LayoutAdmin.cshtml";
+}
+
+<h1>Kategori Güncelleme</h1>
+<a href="/admin/Kategoriler" style="margin-top:15px;" class="btn btn-primary"> KATEGORİLER </a>
+
+    <form action="/admin/Kategoriler/Update/@Model.Id" method="post">
+
+        <div class="col-md-12" style="margin-top:5px;margin-bottom:5px;">
+            <label>Kategori Adı</label>
+            <input type="text" class="form-control" name="Name" value="@Model.Name"/>
+        </div>
+
+        <div class="col-md-12" style="margin-top:5px;margin-bottom:5px;">
+            <label>Kategori Durumu</label>
+            <select name="Status" class="form-control">
+                @if (Model.Status == true)
+                {
+                    <option value="True">Satışta</option>
+                    <option value="False">Satışa Kapalı</option>
+                }
+                else
+                {
+                    <option value="False">Satışa Kapalı</option>
+                    <option value="True">Satışta</option>                
+                }
+            </select>
+        </div>
+
+        <div class="col-md-12" style="margin-top:5px; margin-bottom:5px;text-align:center;">
+            <button type="submit" class="btn btn-success">Güncelle</button>
+        </div>
+
+        <div class="col-md-12" style="margin-top:5px;margin-bottom:5px;text-align:center;">
+            @if (ViewBag.Message == null)
+            {
+                
+            }
+            else if (ViewBag.Message == 1)
+            {
+                <div class="alert alert-success">İşlem Başarılı</div>
+            }
+            else
+            {
+                <div class="alert alert-danger">İşlem Başarısız</div>
+            }
+        </div>
+
+    </form>

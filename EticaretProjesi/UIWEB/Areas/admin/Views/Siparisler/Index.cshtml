@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/admin/Views/_LayoutAdmin.cshtml";
+}
+
+<h1>SİPARİŞLER</h1>
+
+
+        <form action="/admin/Siparisler" method="post">
+            <div class="col-md-12" style="margin-bottom:15px;">
+            <div class="row">
+                <div class="col-md-3">
+                    <input type="date" class="form-control" name="TariheGore" placeholder="Sipariş Tarihi Seçiniz"/>
+                </div>
+                 <div class="col-md-4">
+                    <select name="DurumaGore" class="form-control">
+                        <option value="0">Lütfen Sipariş Durumu Seçiniz</option>
+                        <option value="Onay Bekleniyor">Onay Bekleniyor</option>
+                        <option value="Ödeme Bekleniyor">Ödeme Bekleniyor</option>
+                        <option value="Kargoda">Kargoda</option>
+                        <option value="Teslim Edildi">Teslim Edildi</option>
+                    </select>
+                </div>
+                <div class="col-md-2"><button type="submit" class="btn btn-primary">Filtrele</button></div>
+            </div>
+            </div>
+        </form>
+
+
+<a href="/admin/Siparisler/Insert" class="btn btn-primary" style="margin-top:15px;">Ekle</a>
+<div class="border col-md-12" style="margin-top:15px;">
+    <table class="table table-bordered">
+            <tr>
+            <td>#</td>
+            <td>Sipariş Tarihi</td>
+            <td>Sipariş Tutarı</td>
+            <td>Sipariş Durumu</td>
+            <td>Ödeme Türü</td>
+            <td>İşlemler</td>
+            </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.PaymentDate</td>
+                <td>@item.TotalPrice.ToString("C")</td>
+                <td>@item.OrdersStatus</td>
+                <td>@item.PaymentType</td>
+                <td>
+                    <a href="/Siparisler/Detay/@item.Id" class="btn btn-info" >Detay</a>
+                </td>
+            </tr>            
+        }
+    </table>
+    <div class="col-md-12" style="margin-top:5px;margin-bottom:5px;text-align:center;">
+        @if (TempData["Message"] != null)
+        {
+            <div class="alert alert-success">İşlem Başarılı</div>
+        }
+    </div>
+</div>
+

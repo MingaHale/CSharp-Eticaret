@@ -1,0 +1,52 @@
+﻿<div class="container" style="margin-top:25px;">
+    <div class="row">             
+           
+        @foreach (var item in ViewBag.Resimler)
+        {
+             <div class="col-md-3 col-xs-6" style="margin-bottom:20px;">
+                <div class="col-md-12" style="border:solid 0.3mm #f8efd7; padding-bottom:10px;padding-top:10px;-webkit-box-shadow:0 0 2px 4px #f8efd7; -moz-box-shadow: 0 0 2px 4px #f8efd7; box-shadow: 0 0 2px 4px #f8efd7; vertical-align:middle;text-align:center">
+                    <img src="/images/@item.Images" style="width:100%;">
+                </div> 
+            </div>
+        }
+        <div class="col-md-3 col-xs-6" style="margin-bottom:20px;">
+                <div class="col-md-12" style="border:solid 0.3mm #f8efd7; padding-bottom:10px;padding-top:10px;-webkit-box-shadow:0 0 2px 4px #f8efd7; -moz-box-shadow: 0 0 2px 4px #f8efd7; box-shadow: 0 0 2px 4px #f8efd7; vertical-align:middle;text-align:center">
+                    <img src="/images/@Model.ImagesName" style="width:100%;">
+                </div> 
+            </div>
+
+
+            <div class="col-md-12 col-xs-12" style="margin-bottom:20px;">
+                <div class="col-md-12" style="border:solid 0.3mm #f8efd7; padding-bottom:10px;padding-top:10px;-webkit-box-shadow:0 0 2px 4px #f8efd7; -moz-box-shadow: 0 0 2px 4px #f8efd7; box-shadow: 0 0 2px 4px #f8efd7; vertical-align:middle;text-align:center">
+                    <span style="padding:5px;text-align:center;display:block;vertical-align:middle;margin-top:15px;font-weight:bold">@Model.Name</span>
+                    @if (Model.Discount != 0)
+                    {
+                            <span style="text-decoration:line-through;color:red;display:block;padding-top:5px;text-align:center">@Model.Price.ToString("C")</span>
+                            <span style="display:block;padding-top:5px;text-align:center;">@Model.Discount.ToString("C")</span>
+                    }
+                    else
+                    {
+                            <span style="display:block;padding-top:15px;text-align:center;">@Model.Price.ToString("C")</span>
+                    }
+                    <button type="button" class="btn btn-default" onclick="JSSepeetEkle(@Model.Id)" style="margin-top:15px;">Sepete Ekle</button>
+                </div> 
+             </div>
+
+             
+             <div class="col-md-12 col-xs-12 col-sm-12" style="margin-bottom:15px;">
+                <div class="col-md-12" style="border:solid 0.3mm #f8efd7; padding-bottom:10px;padding-top:10px;-webkit-box-shadow:0 0 2px 4px #f8efd7; -moz-box-shadow: 0 0 2px 4px #f8efd7; box-shadow: 0 0 2px 4px #f8efd7; vertical-align:middle;text-align:center">
+
+
+                <div class="row"> 
+                    <div style="padding:15px;font-size:18px;background-color:#f2f2f2;margin-bottom:15px;">AÇIKLAMA</div>
+                </div>
+            
+
+            @Html.Raw(Model.Explanation)
+
+                </div>
+
+            </div>
+    </div>
+
+</div>

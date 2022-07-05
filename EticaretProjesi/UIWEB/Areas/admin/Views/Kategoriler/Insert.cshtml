@@ -1,0 +1,48 @@
+﻿@model Entities.Categories
+@{
+    ViewData["Title"] = "Insert";
+    Layout = "~/Areas/admin/Views/_LayoutAdmin.cshtml";
+}
+
+
+
+<h1>Kategori Ekleme</h1>
+    <a href="/admin/Kategoriler" style="margin-top:15px;" class="btn btn-primary"> KATEGORİLER </a>
+
+    <form action="/admin/Kategoriler/Insert" method="post">
+
+        <div class="col-md-12" style="margin-top:5px;margin-bottom:5px;">
+            <label>Kategori Adı</label>
+            <input type="text" class="form-control" asp-for="Name"/>
+            <span asp-validation-for="Name" style="color-red"></span>
+        </div>
+
+        <div class="col-md-12" style="margin-top:5px;margin-bottom:5px;">
+            <label>Kategori Durumu</label>
+            <select name="Status" class="form-control">
+                <option value="True">Satışta</option>
+                <option value="False">Satışa Kapalı</option>
+            </select>
+        </div>
+
+        <div class="col-md-12" style="margin-top:5px; margin-bottom:5px;text-align:center;">
+            <button type="submit" class="btn btn-success">Kaydet</button>
+        </div>
+
+        <div class="col-md-12" style="margin-top:5px;margin-bottom:5px;text-align:center;">
+            @if (ViewBag.Message == null)
+            {                
+            }
+            else if (ViewBag.Message == 1)
+            {
+                <div class="alert alert-success">İşlem Başarılı</div>
+            }
+            else
+            {
+                <div class="alert alert-danger">İşlem Başarısız</div>
+            }
+        </div>
+
+    </form>
+
+

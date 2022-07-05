@@ -1,0 +1,57 @@
+﻿<div class="container" style="margin-top:15px;">
+    <div class="row">      
+
+         
+  <div style="margin-bottom:20px;" id="myCarousel" class="carousel slide" data-ride="carousel">   
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+      <div class="item active">
+        <img src="~/images/a772b873-6eb1-48cb-bfb2-298d177850e2.jpg" alt="Banner" style="width:100%;">
+      </div>
+
+      <div class="item">
+        <img src="~/images/c77c9f00-8619-4c50-b396-a85f696a3710.jpg" alt="Banner" style="width:100%;">
+      </div>
+    
+      <div class="item">
+        <img src="~/images/ef2749e8-9431-4ccf-aecc-ad8b50570b7d.jpg" alt="Banner" style="width:100%;">
+      </div>
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+</div>
+
+
+        @foreach (var item in Model)
+        {
+            <div class="col-md-3 col-xs-6 col-sm-6" style="margin-bottom:15px;">
+                <div class="col-md-12" style="border:solid 0.3mm #f8efd7; padding-bottom:10px;padding-top:10px;-webkit-box-shadow:0 0 2px 4px #f8efd7; -moz-box-shadow: 0 0 2px 4px #f8efd7; box-shadow: 0 0 2px 4px #f8efd7; vertical-align:middle;text-align:center">                                       
+                    <img src="/images/@item.ImagesName" style="width:100%;">
+                    <span style="padding:5px;text-align:center;display:block;vertical-align:middle;margin-top:15px;font-weight:bold">@item.Name</span>
+                    @if (item.Discount != 0)
+                    {
+                            <span style="text-decoration:line-through;color:red;display:block;padding-top:5px;text-align:center">@item.Price.ToString("C")</span>
+                            <span style="display:block;padding-top:5px;text-align:center;">@item.Discount.ToString("C")</span>
+                    }
+                    else
+                    {
+                            <span style="display:block;padding-top:30px;text-align:center;">@item.Price.ToString("C")</span>
+                    }
+                     <button type="button" class="btn btn-default" onclick="JSSepeetEkle(@item.Id)" style="margin-top:15px;">Sepete Ekle</button>
+                     <a href="/Urun/@UIWEB.Helpers.URLClear.Temizle(item.Name)/@item.Id" class="btn btn-primary"  style="margin-top:15px;margin-left:10px">Detay</a>
+                    
+                </div> 
+            </div>
+        }
+    </div>
+</div>

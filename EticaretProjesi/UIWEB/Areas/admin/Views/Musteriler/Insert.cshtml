@@ -1,0 +1,61 @@
+﻿@model Entities.Customers
+
+@{
+    ViewData["Title"] = "Insert";
+    Layout = "~/Areas/admin/Views/_LayoutAdmin.cshtml";
+}
+
+<h1>Müşteri Ekleme Ekranı</h1>
+<a href="/admin/Musteriler" class="btn btn-primary" style="margin-top:15px;">Müşteriler</a>
+
+<form action="/admin/Musteriler/Insert" method="post">
+
+        <div class="col-md-12" style="margin-top:5px;margin-bottom:5px;">
+            <label>Müşteri Adı</label>
+            <input type="text" class="form-control" asp-for="NameSurname"/>
+            <span asp-validation-for="NameSurname" style="color:red"></span>
+        </div>
+
+        <div class="col-md-12" style="margin-top:5px;margin-bottom:5px;">
+            <label>Email</label>
+            <input type="text" class="form-control" asp-for="Email"/>
+            <span asp-validation-for="Email" style="color:red"></span>
+        </div>
+
+        <div class="col-md-12" style="margin-top:5px;margin-bottom:5px;">
+            <label>Telefon</label>
+            <input type="text" class="form-control" asp-for="Phone"/>
+            <span asp-validation-for="Phone" style="color:red"></span>
+        </div>
+
+        <div class="col-md-12" style="margin-top:5px;margin-bottom:5px;">
+            <label>Şifre</label>
+            <input type="text" class="form-control" asp-for="Passwords"/>
+            <span asp-validation-for="Passwords" style="color:red"></span>
+        </div>
+
+        <div class="col-md-12" style="margin-top:5px;margin-bottom:5px;">
+            <label>Reklam Bildirimi</label>
+            <select name="AdvertNotice" class="form-control">
+                <option value="True">Yapılsın</option>
+                <option value="False">Yapılmasın Kapalı</option>
+            </select>
+        </div>
+
+        <div class="col-md-12" style="margin-top:15px;margin-bottom:5px;text-align:center"></div>
+        <button type="submit" class="btn btn-primary"> Kaydet </button>
+
+        <div class="col-md-12" style="margin-top:5px;margin-bottom:5px;text-align:center;">
+            @if (ViewBag.Message == null)
+            {                
+            }
+            else if (ViewBag.Message == 1)
+            {
+                <div class="alert alert-success">İşlem Başarılı</div>
+            }
+            else
+            {
+                <div class="alert alert-danger">İşlem Başarısız</div>
+            }
+        </div>
+</form>

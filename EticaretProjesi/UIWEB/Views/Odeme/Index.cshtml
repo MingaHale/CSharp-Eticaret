@@ -1,0 +1,126 @@
+﻿@{
+    decimal toplam = 0;
+}
+
+
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-12" style="margin-bottom:15px;">
+            <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <td style="vertical-align:middle;text-align:center">Ürün</td>
+                    <td style="vertical-align:middle;text-align:center">Adet</td>
+                    <td style="vertical-align:middle;text-align:center">Birim Fiyatı</td>
+                    <td style="vertical-align:middle;text-align:center">Toplam Fiyat</td>
+                </tr>                
+            </thead>
+
+            <tbody>
+                @if (Model != null )
+                {
+                    @foreach (var item in Model)
+                    {
+                         @if (item.Discount != 0)
+                         {
+                             toplam += item.Discount * item.Piece;
+                         }
+                         else
+                         {       
+                             toplam += item.Piece * item.Piece;
+
+                         }
+                        <tr> 
+                            <td style="vertical-align:middle;text-align:center">@item.Name</td>
+
+                            <td style="vertical-align:middle;text-align:center">
+                                <span>@item.Piece</span>
+                            </td>
+                            <td style="vertical-align:middle;text-align:center">
+                                @if (item.Discount != 0)
+                                {
+                                    
+                                    <span style="text-decoration:line-through;color:red;margin-right:10px;">@item.Price.ToString("C")</span>
+                                    <sapn>@item.Discount.ToString("C")</sapn>
+                                    
+                                }
+                                else
+                                {       
+                                        <span>@item.Price.ToString("C")</span>
+                                        
+                                }
+                            </td>
+                            <td style="vertical-align:middle;text-align:center">
+                                @if (item.Discount != 0)
+                                {
+                                    
+                                    <span >@Html.Raw((item.Discount * item.Piece).ToString("C"))</span> //Matematiksel işlem yapılıyorsa @html.raw içinde olması lazım
+                                    
+                                }
+                                else
+                                {
+                                    <span >@Html.Raw((item.Price * item.Piece).ToString("C"))</span>
+                                }
+                            </td>
+                        
+                        </tr>
+                        
+                    }
+                    <tr style="background-color:#f7f7f7;">
+                       <td></td>
+                       <td></td>
+                       <td style="text-align:right;font-weight:bold">Toplam : </td>
+                       <td style="text-align:center;font-weight:bold">@toplam.ToString("C")</td>
+                    </tr>
+                    
+                }
+            </tbody>
+
+        </table>
+        
+        </div>
+        <form class="/Odeme" method="post">
+            @Html.AntiForgeryToken()
+
+            <div class="col-md-12" style="padding:10px;font-weight:bold;margin-bottom:15px;background-color:#f7f7f7;">Teslimat Adresi</div>
+
+            <div class="col-md-12" style="margin-bottom:15px;"><input type="text" class="form-control" placeholder="Telefon Numarası : " name="TTelefon" required /></div>
+
+            <div class="col-md-12" style="margin-bottom:15px;"><input type="text" class="form-control" placeholder="Teslimat Şehri : " name="TSehir" required /></div>
+
+            <div class="col-md-12" style="margin-bottom:15px;"><input type="text" class="form-control" placeholder="Teslimat İlçesi : " name="TIlce" required /></div>
+        
+            <div class="col-md-12" style="margin-bottom:15px;"><input type="text" class="form-control" placeholder="Detaylı Adres : "name="TAdres" required /></div>
+
+            <div class="col-md-12" style="padding:10px;font-weight:bold;margin-bottom:15px;background-color:#f7f7f7;">Fatura Adresi</div>
+
+            <div class="col-md-12" style="margin-bottom:15px;"><input type="text" class="form-control" placeholder="Telefon Numarası : " name="FTelefon" required /></div>
+
+            <div class="col-md-12" style="margin-bottom:15px;"><input type="text" class="form-control" placeholder="Fatura Şehri : " name="FSehir" required /></div>
+
+            <div class="col-md-12" style="margin-bottom:15px;"><input type="text" class="form-control" placeholder="Fatura İlçesi : " name="FIlce" required /></div>
+        
+            <div class="col-md-12" style="margin-bottom:15px;"><input type="text" class="form-control" placeholder="Detaylı Adres : " name="FAdres" required /></div>
+
+            <div class="col-md-12" style="padding:10px;font-weight:bold;margin-bottom:15px;background-color:#f7f7f7;">Ödeme Tipi</div>
+
+            <div class="col-md-12" style="margin-bottom-15px;">
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="PaymentType" value="Havale İle Ödeme" checked style="margin-right:5px;"/>Havale İle Ödeme
+                </label>
+
+                 <label class="form-check-label" style=" margin-left:15px;">
+                    <input type="radio" class="form-check-input" name="PaymentType" value="Kapıda Ödeme" style="margin-right:5px;"/>Kapıda Ödeme
+                </label>
+
+            </div>
+
+            <div class="col-md-12 text-center" style="margin-bottom:15px;">
+                <button type="submit" class=" btn btn-primary"> Ödeme Yap </button>
+            </div>
+        </form>
+
+    </div>
+</div>

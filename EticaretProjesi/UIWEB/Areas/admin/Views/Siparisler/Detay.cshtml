@@ -1,0 +1,128 @@
+﻿
+@{
+    ViewData["Title"] = "Detay";
+    Layout = "~/Areas/admin/Views/_LayoutAdmin.cshtml";
+}
+
+<h1>SİPARİŞ DETAYLARI</h1>
+<div class="border col-md-12" style="margin-top:15px;">
+
+    <div style="padding:15px;font-size:18px;background-color:antiquewhite;">Sipariş Faturası : </div>
+    <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <td style="vertical-align:middle;text-align:center">Fatura No </td>
+                    <td style="vertical-align:middle;text-align:center">Ödeme Tipi</td>
+                    <td style="vertical-align:middle;text-align:center">Sipariş Tutarı</td>
+                    <td style="vertical-align:middle;text-align:center">Sipariş İndirimli Tutarı</td>
+                    <td style="vertical-align:middle;text-align:center">Sİpariş Tarihi</td>
+                    <td style="vertical-align:middle;text-align:center">Sİpariş Durumu</td>
+                </tr>                
+            </thead>
+
+             <tbody>
+                @if (Model != null )
+                {                    
+                        <tr>
+                            <td style="vertical-align:middle;text-align:center">@Model.Id</td>
+                            <td style="vertical-align:middle;text-align:center">@Model.PaymentType</td>
+                            <td style="vertical-align:middle;text-align:center">@Model.TotalPrice.ToString("C")</td>
+                            <td style="vertical-align:middle;text-align:center">@Model.TotalDiscount.ToString("C")</td>
+                            <td style="vertical-align:middle;text-align:center">@Model.PaymentDate</td>
+                            <td style="vertical-align:middle;text-align:center">@Model.OrdersStatus</td>
+                               
+                        </tr>                                       
+                }
+             </tbody>
+    </table>
+
+
+        <div style="padding:15px;font-size:18px;background-color:antiquewhite;">Sipariş Adresleri : </div>
+    <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <td style="vertical-align:middle;text-align:center">Adres Tipi</td>
+                    <td style="vertical-align:middle;text-align:center">Şehir</td>
+                    <td style="vertical-align:middle;text-align:center">İlçe</td>
+                    <td style="vertical-align:middle;text-align:center">Telefon</td>
+                    <td style="vertical-align:middle;text-align:center">Detaylı Adres</td>
+                </tr>                
+            </thead>
+
+             <tbody>
+                @if (Model != null )
+                {                    
+                   @foreach (var item in ViewBag.Address)
+                   {
+                     <tr>
+                            <td style="vertical-align:middle;text-align:center">@Html.Raw((item.AddressType) ? "Teslimat Adresi" : "Fatura Adresi")</td>
+                            <td style="vertical-align:middle;text-align:center">@item.City</td>
+                            <td style="vertical-align:middle;text-align:center">@item.Distrinct</td>
+                            <td style="vertical-align:middle;text-align:center">@item.Phone</td>
+                            <td style="vertical-align:middle;text-align:center">@item.FullAddress</td>
+                               
+                        </tr> 
+                   }                                      
+                }
+             </tbody>
+    </table>
+
+    <div style="padding:15px;font-size:18px;background-color:antiquewhite;">Sipariş Edilen Ürünler</div>
+    <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <td style="vertical-align:middle;text-align:center">#</td>
+                    <td style="vertical-align:middle;text-align:center">Ürün</td>
+                    <td style="vertical-align:middle;text-align:center">Adet</td>
+                    <td style="vertical-align:middle;text-align:center">Birim Fiyatı</td>
+                    <td style="vertical-align:middle;text-align:center">Toplam Fiyat</td>
+                </tr>                
+            </thead>
+
+    <tbody>
+                @if (Model != null )
+                {
+                    @foreach (var item in ViewBag.Details)
+                    {
+                        <tr>
+                            <td style="vertical-align:middle;text-align:center"><img src="~/images/@item.Images" width="75"/></td>
+                            <td style="vertical-align:middle;text-align:center">@item.Name</td>
+
+                            <td style="vertical-align:middle;text-align:center">
+                                <span>@item.Piece</span>
+                            </td>
+                            <td style="vertical-align:middle;text-align:center">
+                                @if (item.Discount != 0)
+                                {
+                                    
+                                    <sapn>@item.Discount.ToString("C")</sapn>
+                                    
+                                }
+                                else
+                                {       
+                                        <span>@item.Price.ToString("C")</span>
+                                        
+                                }
+                            </td>
+                            <td style="vertical-align:middle;text-align:center">
+                                @if (item.Discount != 0)
+                                {
+                                    
+                                    <span >@Html.Raw((item.Discount * item.Piece).ToString("C"))</span> //Matematiksel işlem yapılıyorsa @html.raw içinde olması lazım
+                                    
+                                }
+                                else
+                                {
+                                    <span >@Html.Raw((item.Price * item.Piece).ToString("C"))</span>
+                                }
+                            </td style="vertical-align:middle;text-align:center">
+                        </tr>
+                    }
+                    
+                }
+    </tbody>
+    </table>
+
+</div>
+GVB210
+ghb

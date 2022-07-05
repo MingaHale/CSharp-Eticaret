@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/admin/Views/_LayoutAdmin.cshtml";
+    
+}
+
+<h1>ÜRÜN RESİMLERİ</h1>
+
+<div class="border col-md-12" style="margin-top:15px;">
+ <form action="/Admin/UrunResimleri/list/@ViewContext.RouteData.Values["UrunId"]" method="post" enctype="multipart/form-data">
+     <input type="file" name="dosya" class="form-control" /><br/>
+     <button type="submit">Resim Ekle</button>
+ </form>
+</div>
+
+<div class="border col-md-12" style="margin-top:15px;">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-2"> 
+            <img src="/images/@item.Images" width="100%">
+            <a href="/Admin/UrunResimleri/Delete/@item.Id" class="btn btn-danger" style="position:absolute;right:15px;top:15px;" >Sil</a>
+        </div>
+    }
+</div>

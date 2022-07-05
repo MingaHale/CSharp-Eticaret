@@ -1,0 +1,17 @@
+C:\Users\melik\source\repos\EticaretProjesi\Bussiness\bin\Debug\net6.0\Bussiness.deps.json
+C:\Users\melik\source\repos\EticaretProjesi\Bussiness\bin\Debug\net6.0\Bussiness.dll
+C:\Users\melik\source\repos\EticaretProjesi\Bussiness\bin\Debug\net6.0\Bussiness.pdb
+C:\Users\melik\source\repos\EticaretProjesi\Bussiness\obj\Debug\net6.0\Bussiness.csproj.AssemblyReference.cache
+C:\Users\melik\source\repos\EticaretProjesi\Bussiness\obj\Debug\net6.0\Bussiness.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\melik\source\repos\EticaretProjesi\Bussiness\obj\Debug\net6.0\Bussiness.AssemblyInfoInputs.cache
+C:\Users\melik\source\repos\EticaretProjesi\Bussiness\obj\Debug\net6.0\Bussiness.AssemblyInfo.cs
+C:\Users\melik\source\repos\EticaretProjesi\Bussiness\obj\Debug\net6.0\Bussiness.csproj.CoreCompileInputs.cache
+C:\Users\melik\source\repos\EticaretProjesi\Bussiness\obj\Debug\net6.0\Bussiness.dll
+C:\Users\melik\source\repos\EticaretProjesi\Bussiness\obj\Debug\net6.0\refint\Bussiness.dll
+C:\Users\melik\source\repos\EticaretProjesi\Bussiness\obj\Debug\net6.0\Bussiness.pdb
+C:\Users\melik\source\repos\EticaretProjesi\Bussiness\obj\Debug\net6.0\ref\Bussiness.dll
+C:\Users\melik\source\repos\EticaretProjesi\Bussiness\bin\Debug\net6.0\DataAccess.dll
+C:\Users\melik\source\repos\EticaretProjesi\Bussiness\bin\Debug\net6.0\Entities.dll
+C:\Users\melik\source\repos\EticaretProjesi\Bussiness\bin\Debug\net6.0\DataAccess.pdb
+C:\Users\melik\source\repos\EticaretProjesi\Bussiness\bin\Debug\net6.0\Entities.pdb
+C:\Users\melik\source\repos\EticaretProjesi\Bussiness\obj\Debug\net6.0\Bussiness.csproj.CopyComplete

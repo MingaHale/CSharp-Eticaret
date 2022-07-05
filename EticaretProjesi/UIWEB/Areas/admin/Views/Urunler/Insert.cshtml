@@ -1,0 +1,88 @@
+﻿@{
+    ViewData["Title"] = "Insert";
+    Layout = "~/Areas/admin/Views/_LayoutAdmin.cshtml";
+}
+
+
+
+<h1>Ürün Ekleme Ekranı</h1>
+    <a href="/admin/Urunler" style="margin-top:15px;" class="btn btn-primary"> ÜRÜNLER </a>
+    
+    <form action="/admin/Urunler/Insert" method="post" enctype="multipart/form-data">
+
+        <div class="col-md-12" style="margin-top:5px;margin-bottom:5px;">
+            <label>Ürün Resmi</label>
+            <input type="file" class="form-control" name="Dosya"/>
+        </div>
+
+        <div class="col-md-12" style="margin-top:5px;margin-bottom:5px;">
+            <label>Ürün Adı</label>
+            <input type="text" class="form-control" name="Name"/>
+        </div>
+
+        <div class="col-md-12" style="margin-top:5px;margin-bottom:5px;">
+            <label>Kategoriler</label>
+            <select name="CategoriesId" class="form-control">
+                @foreach (var item in ViewBag.Kategori)
+                {
+                     <option value="@item.Id">@item.Name</option>
+
+                }
+            </select>
+        </div>
+
+        <div class="col-md-12" style="margin-top:5px;margin-bottom:5px;">
+            <label>Ürün Fiyatı</label>
+            <input type="text" class="form-control" name="Price"/>
+        </div>
+
+        <div class="col-md-12" style="margin-top:5px;margin-bottom:5px;">
+            <label>Ürün İndirimli Fiyatı</label>
+            <input type="text" class="form-control" name="Discount" required/>
+        </div>
+
+        <div class="col-md-12" style="margin-top:5px;margin-bottom:5px;">
+            <label>Stok</label>
+            <input type="text" class="form-control" name="Stok"required/>
+        </div>
+
+        <div class="col-md-12" style="margin-top:5px;margin-bottom:5px;">
+            <label>Açıklama</label>
+            <textarea type="text" class="form-control" name="Explanation"> </textarea>
+        </div>
+
+        <div class="col-md-12" style="margin-top:5px;margin-bottom:5px;">
+            <label>Ürün Durumu</label>
+            <select name="Status" class="form-control">
+                <option value="True">Satışta</option>
+                <option value="False">Satışa Kapalı</option>
+            </select>
+        </div>
+
+        <div class="col-md-12" style="margin-top:5px; margin-bottom:5px;text-align:center;">
+            <button type="submit" class="btn btn-success">Kaydet</button>
+        </div>
+        
+        <div class="col-md-12" style="margin-top:5px;margin-bottom:5px;text-align:center;">
+           
+
+            @if (ViewBag.Message == null)
+            {                
+            }
+            else if (ViewBag.Message == 1)
+            {
+                <div class="alert alert-success">İşlem Başarılı</div>
+            }
+            else
+            {
+                <div class="alert alert-danger">İşlem Başarısız</div>
+            }
+            @if (ViewBag.Error != null)
+            {
+                <div class="alert alert-danger">@ViewBag.Error</div>
+            }
+        </div>
+
+    </form>
+
+

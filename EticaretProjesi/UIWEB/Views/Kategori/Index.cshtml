@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Entities.Products>
+<div class="container" style="margin-top:25px;">
+    <div class="row">
+
+        <form action="/Kategori/@ViewContext.RouteData.Values["KategoriSeo"]/@ViewContext.RouteData.Values["KategoriId"]" method="post">
+            <div class="col-md-12" style="margin-bottom:15px;">
+            <div class="row">
+                <div class="col-md-3">
+                    <select name="Filtre" class="form-control">
+                        <option value="Az">Alfabetik Sıra</option>
+                        <option value="FiyatArtan">Artan Fiyata</option>
+                        <option value="FiyatAzalan">Azalan Fiyata</option>
+                    </select>
+                </div>
+                <div class="col-md-2"><button type="submit" class="btn btn-primary">Filtrele</button></div>
+            </div>
+            </div>
+        </form>
+
+        @if (Model.Count() != 0)
+        {
+             @foreach (var item in Model)
+        {
+                <div class="col-md-3 col-xs-6" style="margin-bottom:15px;">
+                <div class="col-md-12" style="border:solid 0.3mm #f8efd7; padding-bottom:10px;padding-top:10px;-webkit-box-shadow:0 0 2px 4px #f8efd7; -moz-box-shadow: 0 0 2px 4px #f8efd7; box-shadow: 0 0 2px 4px #f8efd7; vertical-align:middle;text-align:center">
+                    
+                    <img src="/images/@item.ImagesName" style="width:100%;">
+                    <span style="padding:5px;text-align:center;display:block;vertical-align:middle;margin-top:15px;font-weight:bold">@item.Name</span>
+                    @if (item.Discount != 0)
+                    {
+                            <span style="text-decoration:line-through;color:red;display:block;padding-top:5px;text-align:center">@item.Price.ToString("C")</span>
+                            <span style="display:block;padding-top:5px;text-align:center;">@item.Discount.ToString("C")</span>
+                    }
+                    else
+                    {
+                            <span style="display:block;padding-top:30px;text-align:center;">@item.Price.ToString("C")</span>
+                    }                   
+                     <button type="button" class="btn btn-default" onclick="JSSepeetEkle(@item.Id)" style="margin-top:15px;">Sepete Ekle</button>
+                     <a href="/Urun/@UIWEB.Helpers.URLClear.Temizle(item.Name)/@item.Id" class="btn btn-primary"  style="margin-top:15px;margin-left:10px">Detay</a>
+                    
+                </div> 
+            </div>
+            }
+        }
+        else
+        {
+            <div style="padding:25px;font-size:25px;text-align:center;display:blok">Bu Kategoriye Ait Ürün Bulunamadı</div>
+        }
+
+    </div>
+</div>

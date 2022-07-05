@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/admin/Views/_LayoutAdmin.cshtml";
+}
+
+<h1>Müşteriler</h1>
+<a href="/admin/Musteriler/Insert" class="btn btn-primary" style="margin-top:15px;">Ekle</a>
+<div class="border col-md-12" style="margin-top:15px;">
+    <table class="table table-bordered">
+            <tr>
+            <td>#</td>
+            <td>Adı Soyadı</td>
+            <td>Telefon numarası</td>
+            <td>Email</td>
+            <td>İşlemler</td>
+            </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.NameSurname</td>
+                <td>@item.Phone</td>
+                <td>@item.Email</td>
+                <td>
+                    <a href="/admin/Musteriler/Update/@item.Id" class="btn btn-primary" >Düzenle</a>
+                    <a href="/admin/Musteriler/Delete/@item.Id" class="btn btn-danger" >Sil</a>
+                </td>
+            </tr>            
+        }
+    </table>
+    <div class="col-md-12" style="margin-top:5px;margin-bottom:5px;text-align:center;">
+        @if (TempData["Message"] != null)
+        {
+            <div class="alert alert-success">İşlem Başarılı</div>
+        }
+    </div>
+</div>
+

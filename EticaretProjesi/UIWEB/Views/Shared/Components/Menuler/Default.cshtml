@@ -1,0 +1,8 @@
+﻿@foreach (var item in Model)
+{
+    if (item.Status == true)
+    {
+        <li><a href="/Kategori/@UIWEB.Helpers.URLClear.Temizle(item.Name)/@item.Id">@item.Name</a> </li>
+    }
+}
+ 

@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/admin/Views/_LayoutAdmin.cshtml";
+}
+
+<h1>Ürünler</h1>
+<a href="/admin/Urunler/Insert" class="btn btn-primary" style="margin-top:15px;">Ekle</a>
+<div class="border col-md-12" style="margin-top:15px;">
+    <table class="table table-bordered">
+            <tr>
+            <td>#</td>
+            <td>Ürün Resmi</td>
+            <td>Ürün Adı</td>
+            <td>Fiyat</td>
+            <td>İndirimli Fiyat</td>
+            <td>İşlemler</td>
+            </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td><img src="/images/@item.ImagesName" width="100"></td>
+                <td>@item.Name</td>
+                <td>@item.Price.ToString("C")</td>
+                <td>@item.Discount</td>
+                <td>
+                    <a href="/Admin/UrunResimleri/list/@item.Id" class="btn btn-info" >Resimler</a>
+                    <a href="/admin/Urunler/Update/@item.Id" class="btn btn-primary" >Düzenle</a>
+                    <a href="/admin/Urunler/Delete/@item.Id" class="btn btn-danger" >Sil</a>
+                </td>
+            </tr>            
+        }
+    </table>
+    <div class="col-md-12" style="margin-top:5px;margin-bottom:5px;text-align:center;">
+        @if (TempData["Message"] != null)
+        {
+            <div class="alert alert-success">İşlem Başarılı</div>
+        }
+    </div>
+</div>
+
